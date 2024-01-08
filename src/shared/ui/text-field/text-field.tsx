@@ -5,11 +5,13 @@ const TextField = ({
   label,
   type,
   placeholder,
+  error,
   ...rest
 }: {
   label?: string;
   type?: string;
   placeholder?: string;
+  error?: string;
 } & InputHTMLAttributes<HTMLInputElement>) => {
   return (
     <div className="w-full flex flex-col">
@@ -22,10 +24,11 @@ const TextField = ({
         type={type}
         placeholder={placeholder}
         className={clsx(
-          "bg-borderMainColor text-textMainColor py-2 w-full rounded-xl outline-none pl-5",
+          "bg-borderMainColor text-textMainColor py-3 w-full rounded-xl outline-none pl-5",
           styles.input
         )}
       />
+      {error && <p>{error}</p>}
     </div>
   );
 };

@@ -1,8 +1,9 @@
 import LoginPage from "@/pages/login-page";
-import { LOGIN_ROUTE, REGISTER_ROUTE } from "./paths";
+import { HOME_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE } from "./paths";
 import RegisterPage from "@/pages/register-page";
 import { ReactNode } from "react";
-import { AuthLayout } from "@/app/layouts";
+import { AuthLayout, MainLayout } from "@/app/layouts";
+import HomePage from "@/pages/home-page";
 
 type Routers = {
   path: string;
@@ -19,4 +20,10 @@ export const publicRouter: Routers[] = [
   { path: REGISTER_ROUTE, Component: RegisterPage, Layout: AuthLayout },
 ];
 
-export const authRouter = [{}];
+export const authRouter = [
+  {
+    path: HOME_ROUTE,
+    Component: HomePage,
+    Layout: MainLayout,
+  },
+];
