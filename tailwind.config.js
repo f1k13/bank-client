@@ -11,6 +11,9 @@ module.exports = {
       borderMainColor: "#2A2A2A",
       textMainColor: "#989898",
       white: "#fff",
+      black: "#000",
+      secondaryBlockColor: "#152030",
+      blockMainColor: "#1981A3",
     },
     fontSize: {
       "14px": "14px",

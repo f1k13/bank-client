@@ -7,6 +7,7 @@ import { HOME_ROUTE, LOGIN_ROUTE } from "@/shared/router/paths";
 import { getUserFx } from "@/entities/user/lib/user-effect";
 import { getToken } from "@/shared/lib/token-events";
 import { setTokenToApi } from "@/shared/api/api";
+import { $user } from "@/entities/user/model/user";
 
 const AppRouter = () => {
   const isAuth = useStore($isAuth);
@@ -21,6 +22,8 @@ const AppRouter = () => {
     setTokenToApi(String(token));
     getUserFx();
   }, []);
+  const user = useStore($user);
+  console.log(user);
   return (
     <Routes>
       {isAuth &&
