@@ -1,13 +1,22 @@
-import { REGISTER_ROUTE } from "@/shared/router/paths";
+import { $isAuth } from "@/entities/auth/model/auth";
+import { HOME_ROUTE, LOGIN_ROUTE, REGISTER_ROUTE } from "@/shared/router/paths";
 import { TextField } from "@/shared/ui/text-field";
+import { useStore } from "effector-react";
 import { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const isAuth = useStore($isAuth);
+  const navigate = useNavigate();
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!isAuth) {
+      navigate(LOGIN_ROUTE);
+    } else {
+      navigate(HOME_ROUTE);
+    }
   };
-  const navigate = useNavigate();
   return (
     <div className="w-[700px] items-center flex-col bg-secondaryColor h-1/2 flex pt-[20px] rounded-2xl gap-5 ">
       <div className="flex flex-col gap-5 items-center">
