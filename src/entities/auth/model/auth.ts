@@ -7,4 +7,6 @@ export const $isAuth = createStore<boolean>(false)
   .on(registerFx.failData, () => false)
   .on(loginFx.doneData, () => true)
   .on(loginFx.failData, () => false)
-  .on(getUserFx.doneData, () => true);
+  .on(getUserFx.doneData, () => true)
+  .on(getUserFx.doneData, () => true)
+  .on(getUserFx.failData, () => false);

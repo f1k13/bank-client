@@ -1,7 +1,7 @@
 import { $isAuth } from "@/entities/auth/model/auth";
 import { authRouter, publicRouter } from "@/shared/router/router";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { HOME_ROUTE, LOGIN_ROUTE } from "@/shared/router/paths";
 import { getUserFx } from "@/entities/user/lib/user-effect";
@@ -10,20 +10,21 @@ import { setTokenToApi } from "@/shared/api/api";
 import { $user } from "@/entities/user/model/user";
 
 const AppRouter = () => {
-  const isAuth = useStore($isAuth);
+  const isAuth = useUnit($isAuth);
   const navigate = useNavigate();
   const token = getToken();
+  const user = useUnit($user);
+  console.log(user);
+
   useEffect(() => {
+    setTokenToApi(String(token));
+    getUserFx();
     if (token) {
       navigate(HOME_ROUTE);
     } else {
       navigate(LOGIN_ROUTE);
     }
-    setTokenToApi(String(token));
-    getUserFx();
   }, []);
-  const user = useStore($user);
-  console.log(user);
   return (
     <Routes>
       {isAuth &&

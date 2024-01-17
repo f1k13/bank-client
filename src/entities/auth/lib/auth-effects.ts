@@ -17,6 +17,7 @@ export const registerFx = createEffect(async (params: RegisterUser) => {
 export const loginFx = createEffect(
   async (params: { phoneNumber: string; password: string }) => {
     const { data } = await api.post("/auth/login", { ...params });
+    setToken(data.token);
     return data;
   }
 );
